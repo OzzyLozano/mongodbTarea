@@ -1,0 +1,8 @@
+install dependencies:
+  npm init
+  npm install express --save
+  npm install -g nodemon
+  npm install mongodb --save
+
+run app:
+  nodemon app.js

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MongoDB</title>
+  <link rel="stylesheet" href="./styles/index.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.0.1/dist/css/multi-select-tag.css">
+</head>
+<body>
+  
+  <header>
+    <h1>Biblioteca de Libros</h1>
+    <nav>
+      <ul>
+        <li><a href="#" id="all-books">Todos los Libros</a></li>
+        <li><a href="#" id="add-book-link">Agregar Libro</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="libros">
+      <div id="book-list">
+        <!-- Aquí se mostrarán los libros -->
+      </div>
+      <div id="pagination">
+        <!-- Aquí se mostrarán los botones de paginación -->
+      </div>
+    </section>
+  </main>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <form id="book-form" class="book-form">
+        <h2 class="modal-title">Agregar un Libro</h2>
+        <div id="id-section" class="section">
+          <label for="book-id">Id:</label>
+          <input id="book-id" name="book-id">
+        </div>
+        <div id="title_section" class="section">
+          <label for="title">Título:</label>
+          <input type="text" id="title" name="title">
+        </div>
+        <div id="author-section" class="section">
+          <label for="author">Autor:</label>
+          <input type="text" id="author" name="author">
+        </div>
+        <div id="rating-section" class="section">
+          <label for="rating">Rating:</label>
+          <input type="number" id="rating" name="rating" min="1" max="10">
+        </div>
+        <div class="genre-container">
+          <div class="custom-select open">
+            <div id="genre-section" class="select-box">
+              <label for="genre">Género(s):</label>
+              <input type="text" id="genre" name="genre" class="tags_input" hidden>
+              <div class="selected-options">
+                <span class="tag">Fantasy<span class="remove-tag">&times;
+                </span></span>
+                <span class="tag">Sci-Fi<span class="remove-tag">&times;
+                </span></span>
+                <span class="tag">Dystopian<span class="remove-tag">&times;
+                </span></span>
+                <span class="tag">Magic<span class="remove-tag">&times;
+                </span></span>
+              </div>
+              <div class="arrow">
+                <i class="fa fa-angle-down"></i>
+              </div>
+            </div>
+            <div class="options">
+              <div class="option-searcg-tags">
+                <input type="text" class="search-tags" placeholder="Search Tags...">
+                <button type="button" class="clear"><i class="fa fa-close"></i></button>
+              </div>
+              <div class="option all-tags" data-value="All">Select All</div>
+              <div class="option active" data-value="Fantasy">Fantasy</div>
+              <div class="option active" data-value="Sci-Fi">Sci-Fi</div>
+              <div class="option active" data-value="Dystopian">Dystopian</div>
+              <div class="option active" data-value="Magic">Magic</div>
+              <div class="no-result-match">No Result Match</div>
+            </div>
+            <span class="tag_error_msg error">This field is required</span>
+          </div>
+        </div>
+        <div class="section">
+          <button type="submit" id="save-book" class="book-form__btn">Añadir</button>
+          <button type="button" id="delete-book" class="book-form__btn">Eliminar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 Biblioteca de Libros</p>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="./scripts/index.js"></script>
+  <script src="./scripts/modal.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.0.1/dist/js/multi-select-tag.js"></script>
+  <script>
+    new MultiSelectTag('genre', {
+    rounded: true,    // default true
+    shadow: true,      // default false
+    placeholder: 'Search',  // default Search...
+    tagColor: {
+        textColor: '#327b2c',
+        borderColor: '#92e681',
+        bgColor: '#eaffe6',
+    }, onChange: function(values) {
+        console.log(values)
+    }
+    })  // id
+  </script>
+</body>
+</html>

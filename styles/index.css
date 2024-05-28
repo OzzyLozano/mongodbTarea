@@ -1,0 +1,204 @@
+/* Estilos generales */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #f2f2f2;
+  padding: 20px;
+  text-align: center;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+main {
+  padding: 20px;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+}
+
+/* Estilos clases */
+
+.libros {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 20px;
+}
+
+.libro {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.libro img {
+  max-width: 100%;
+  height: auto;
+}
+
+.libro h2 {
+  margin-top: 0;
+}
+
+/* Estilos para el modal */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+  transition: opacity 0.3s ease; /* Transición de opacidad */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  animation: modal-animation 1s;
+  align-items: center;
+}
+
+.modal.show {
+  display: block;
+}
+
+.modal-title {
+  text-align: center;
+}
+
+.book-form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 0px 0px 30px 0px;
+  width: 95%;
+}
+
+.section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 12px 0px;
+}
+
+.section > input {
+  width: 40%;
+  padding: 10px;
+  border-radius: 10px;
+}
+.section > label {
+  width: 25%;
+  text-align: center;
+}
+
+.book-form__btn {
+  padding: 10px;
+  border-radius: 100px;
+}
+
+.book-form__btn {
+  padding: 10px;
+  border-radius: 100px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  align-self: flex-end;
+  margin-right: 5%;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.genre-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.custom-select {
+  position: relative;
+  width: 65%;
+}
+
+.select-box {
+  background-color: #fff;
+  border: 1px solid #888;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 56px;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+.selected-options {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-top: 0;
+}
+
+.tag {
+  background-color: #888;
+  color: #333;
+  border-radius: 5px;
+  margin-right: 5px;
+  padding: 6px 14px;
+  display: flex;
+  align-items: center;
+}
+
+.remove-tag {
+  margin-left: 6px;
+  cursor: pointer;
+}
+
+/* Define la animación para el modal*/
+@keyframes modal-animation {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+/* Estilos para ocultar las flechas en el input de rating */
+#rating::-webkit-outer-spin-button,
+#rating::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0; /* Para asegurarse de que no hay espacio reservado para las flechas */
+}
+
