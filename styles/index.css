@@ -26,6 +26,9 @@ nav ul li a {
   text-decoration: none;
   color: #333;
 }
+nav ul li a:hover {
+  text-decoration: none;
+}
 
 main {
   padding: 20px;
@@ -78,11 +81,12 @@ footer {
   margin: 10% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   animation: modal-animation 1s;
   align-items: center;
+  max-width: 600px;
 }
 
 .modal.show {
@@ -154,7 +158,6 @@ footer {
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
-
 .book {
   border: 1px solid #ccc;
   width: 40%;
@@ -162,16 +165,17 @@ footer {
   padding: 10px;
   margin: 10px;
 }
-
 .book h2 {
+  font-size: 1.4rem;
+  margin: 8px 0px;
+}
+.book h3 {
   font-size: 1.2rem;
-  margin-bottom: 5px;
+  margin: 8px 0px;
 }
-
 .book p {
-  margin: 5px 0;
+  margin: 6px 0;
 }
-
 .review {
   font-style: italic;
   margin-top: 10px;

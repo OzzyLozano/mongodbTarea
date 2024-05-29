@@ -1,3 +1,0 @@
-$(function () {
-  $('#genre-selection').selectpicker();
-});
