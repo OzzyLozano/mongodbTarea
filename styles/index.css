@@ -31,6 +31,10 @@ main {
   padding: 20px;
 }
 
+p, h1, h2, h3, h4 {
+  text-align: center;
+}
+
 footer {
   background-color: #333;
   color: #fff;
@@ -39,12 +43,6 @@ footer {
 }
 
 /* Estilos clases */
-
-.libros {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 20px;
-}
 
 .libro {
   border: 1px solid #ccc;
@@ -77,7 +75,7 @@ footer {
 
 .modal-content {
   background-color: #fefefe;
-  margin: 15% auto;
+  margin: 10% auto;
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
@@ -99,18 +97,17 @@ footer {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  margin: 0px 0px 30px 0px;
-  width: 95%;
+  width: 100%;
 }
 
 .section {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   margin: 12px 0px;
 }
 
-.section > input {
+.section input {
   width: 40%;
   padding: 10px;
   border-radius: 10px;
@@ -118,6 +115,9 @@ footer {
 .section > label {
   width: 25%;
   text-align: center;
+}
+.section button {
+  width: 25%;
 }
 
 .book-form__btn {
@@ -146,47 +146,54 @@ footer {
   cursor: pointer;
 }
 
-.genre-container {
+/* estilos contenedor generos */
+
+/* estilos contenedor de libros */
+.book-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
-.custom-select {
-  position: relative;
-  width: 65%;
-}
-
-.select-box {
-  background-color: #fff;
-  border: 1px solid #888;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 56px;
-  padding: 0 10px;
-  cursor: pointer;
-}
-
-.selected-options {
-  display: flex;
-  flex-wrap: nowrap;
-  margin-top: 0;
-}
-
-.tag {
-  background-color: #888;
-  color: #333;
+.book {
+  border: 1px solid #ccc;
+  width: 40%;
   border-radius: 5px;
-  margin-right: 5px;
-  padding: 6px 14px;
-  display: flex;
-  align-items: center;
+  padding: 10px;
+  margin: 10px;
 }
 
-.remove-tag {
-  margin-left: 6px;
-  cursor: pointer;
+.book h2 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.book p {
+  margin: 5px 0;
+}
+
+.review {
+  font-style: italic;
+  margin-top: 10px;
+}
+
+@media (max-width: 540px) {
+  .section {
+    flex-direction: column;
+    margin: 6px 0px;
+  }
+  .section * {
+    margin: 6px 0px;
+  }
+  .book {
+    width: 69%;
+  }
+}
+
+@media (min-width: 768px) {
+  .book {
+    width: 27%;
+  }
 }
 
 /* Define la animación para el modal*/

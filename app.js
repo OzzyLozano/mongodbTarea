@@ -7,6 +7,14 @@ const path = require('path')
 const app = express()
 app.use(express.json())
 
+// Configurar los encabezados CORS
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5500'); // Reemplaza esto con la URL de tu aplicación
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+})
+
 // Serve static files (including your HTML file)
 app.use(express.static(path.join(__dirname, 'public')))
 
@@ -22,17 +30,18 @@ connectToDb((err) => {
 })
 
 // routes
+let books = []
 app.get('/books', (req, res) => {
   // current page
-  // const page = req.query.page || 0 // for pagination
-  // const booksPerPage = 3 // for pagination
+  const page = req.query.page || 0
+  const booksPerPage = 3
 
-  let books = []
+  books = []
   db.collection('books')
     .find()
     .sort({ rating: -1 })
-    // .skip(page * booksPerPage) // for pagination
-    // .limit(booksPerPage) // for pagination
+    .skip(page * booksPerPage) // for pagination
+    .limit(booksPerPage) // for pagination
     .forEach(book => books.push(book))
     .then(() => {
       res.status(200).json(books)
@@ -95,9 +104,4 @@ app.patch('/books/:id', (req, res) => {
   } else {
     res.status(500).json({ error: 'Not a valid document id' })
   }
-})
-
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}`)
 })
