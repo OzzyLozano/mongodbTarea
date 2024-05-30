@@ -35,7 +35,7 @@
       <span class="close">&times;</span>
       <form id="book-form" class="book-form">
         <h2 class="modal-title">Agregar un Libro</h2>
-        <div id="id-section" class="section">
+        <div id="id-section" class="section" style="display: none;">
           <label for="book-id">Id:</label>
           <input id="book-id" name="book-id">
         </div>
@@ -47,13 +47,17 @@
           <label for="author">Autor:</label>
           <input type="text" id="author" name="author">
         </div>
+        <div id="pages-section" class="section">
+          <label for="pages">Pages:</label>
+          <input type="number" id="pages" name="pages" min="1">
+        </div>
         <div id="rating-section" class="section">
           <label for="rating">Rating:</label>
           <input type="number" id="rating" name="rating" min="1" max="10">
         </div>
         <div class="genre-container section">
           <label for="native-select">Géneros:</label>
-          <select multiple name="native-select" data-silent-initial-value-set="true">
+          <select multiple name="native-select" data-silent-initial-value-set="true" id="genres">
             <option value="fantasy">Fantasy</option>
             <option value="sci-fi">Sci-Fi</option>
             <option value="dystopian">Dystopian</option>
@@ -61,7 +65,7 @@
           </select>
         </div>
         <div class="section">
-          <button type="submit" id="save-book" class="book-form__btn">Añadir</button>
+          <button type="submit" id="save-book" class="book-form__btn" onclick="addBook()">Añadir</button>
           <button type="button" id="delete-book" class="book-form__btn">Eliminar</button>
         </div>
       </form>

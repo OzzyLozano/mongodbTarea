@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
-  fetch('http://localhost:3000/books?page=0')
+  let uri = 'http://localhost:3000/books'
+  fetch(uri)
     .then(response => response.json())
     .then(bookstore => {
-      console.log(bookstore)
       const bookList = document.getElementById("book-list");
 
       bookstore.forEach(book => {
