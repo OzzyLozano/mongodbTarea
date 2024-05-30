@@ -13,8 +13,10 @@
     <h1>Biblioteca de Libros</h1>
     <nav>
       <ul>
-        <li><a href="#" id="all-books" onclick="">Todos los Libros</a></li>
+        <li><a href="#" id="all-books" onclick="showAllBooks()">Todos los Libros</a></li>
         <li><a href="#" id="add-book-link">Agregar Libro</a></li>
+        <li><a href="#" id="search-book-link">Buscar Libro</a></li>
+        <li><a href="#" id="delete-book-link">Eliminar Libro</a></li>
       </ul>
     </nav>
   </header>
@@ -24,21 +26,27 @@
       <div id="book-list" class="book-container">
         <!-- Aquí se mostrarán los libros -->
       </div>
-      <div id="pagination">
+      <div id="pagination" class="pagination">
         <!-- Aquí se mostrarán los botones de paginación -->
+        <button disabled id="back-btn" class="btn" onclick="previousPage()">Atrás</button>
+        <button id="next-btn" class="btn" onclick="nextPage()">Siguiente</button>
       </div>
     </section>
   </main>
+  
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>¡Libro agregado con éxito!</p>
+      <button onclick="reload()" class="btn">Ok!</button>
+    </div>
+  </div>
 
-  <div id="modal" class="modal">
+  <div id="add-modal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
       <form id="book-form" class="book-form">
         <h2 class="modal-title">Agregar un Libro</h2>
-        <div id="id-section" class="section" style="display: none;">
-          <label for="book-id">Id:</label>
-          <input id="book-id" name="book-id">
-        </div>
         <div id="title_section" class="section">
           <label for="title">Título:</label>
           <input type="text" id="title" name="title">
@@ -65,8 +73,42 @@
           </select>
         </div>
         <div class="section">
-          <button type="submit" id="save-book" class="book-form__btn" onclick="addBook()">Añadir</button>
-          <button type="button" id="delete-book" class="book-form__btn">Eliminar</button>
+          <button type="submit" id="add-book" class="book-form__btn" onclick="addBook()">Añadir</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="delete-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <form id="book-form" class="book-form">
+        <h2 class="modal-title">Eliminar un Libro</h2>
+        <div id="id-section" class="section">
+          <label for="book-id">Id:</label>
+          <input id="book-id" name="book-id">
+        </div>
+        <div class="section">
+          <button type="button" id="delete-book" class="book-form__btn" onclick="deleteBook()">Eliminar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="search-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <form id="book-form" class="book-form">
+        <h2 class="modal-title">Buscar un Libro</h2>
+        <div class="section">
+          <label for="title">Título:</label>
+          <input type="text" id="search-title" name="title">
+        </div>
+        <div class="section">
+          <button type="button" id="search-book" class="book-form__btn" onclick="searchBook()">Buscar</button>
+        </div>
+        <div id="book-found">
+          <!-- found book -->
         </div>
       </form>
     </div>

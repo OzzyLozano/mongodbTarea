@@ -34,15 +34,15 @@ connectToDb((err) => {
 // routes
 app.get('/books', (req, res) => {
   // current page
-  // const page = req.query.page || 0
-  // const booksPerPage = 3
+  const page = req.query.page || 0
+  const booksPerPage = 3
 
   let books = []
   db.collection('books')
     .find()
-    .sort({ rating: -1 })
-    // .skip(page * booksPerPage) // for pagination
-    // .limit(booksPerPage) // for pagination
+    .sort({ title: 1 })
+    .skip(page * booksPerPage) // for pagination
+    .limit(booksPerPage) // for pagination
     .forEach(book => books.push(book))
     .then(() => {
       res.status(200).json(books)
@@ -50,6 +50,29 @@ app.get('/books', (req, res) => {
       res.status(500).json({error: 'Could not fetch data'})
     })
 })
+app.get('/all-books', (req, res) => {
+  let books = []
+  db.collection('books')
+    .find()
+    .sort({ title: 1 })
+    .forEach(book => books.push(book))
+    .then(() => {
+      res.status(200).json(books)
+    }).catch(() => {
+      res.status(500).json({error: 'Could not fetch data'})
+    })
+})
+app.get('/total-books', (req, res) => {
+  db.collection('books')
+    .count()
+    .then(totalBooks => {
+      res.status(200).json({ totalBooks: totalBooks });
+    })
+    .catch(error => {
+      console.error('Error fetching total books:', error);
+      res.status(500).json({ error: 'Could not fetch data' });
+    });
+});
 
 app.get('/books/:id', (req, res) => {
   if (ObjectId.isValid(req.params.id)) {
@@ -64,6 +87,21 @@ app.get('/books/:id', (req, res) => {
     res.status(500).json({ error: 'Not a valid document id' })
   }
 })
+app.get('/search-book/:title', (req, res) => {
+  const searchTitle = req.params.title;
+  db.collection('books')
+    .findOne({ title: searchTitle })
+    .then(book => {
+      if (!book) {
+        res.status(404).json({ error: 'Book not found' });
+      } else {
+        res.status(200).json(book);
+      }
+    }).catch(err => {
+      console.error('Error fetching book data:', err);
+      res.status(500).json({ error: 'Could not fetch data' });
+    });
+});
 
 app.post('/post-book', (req, res) => {
   const book = req.body
@@ -77,7 +115,7 @@ app.post('/post-book', (req, res) => {
     })
 })
 
-app.delete('/books/:id', (req, res) => {
+app.delete('/delete-book/:id', (req, res) => {
   if (ObjectId.isValid(req.params.id)) {
     db.collection('books')
       .deleteOne({ _id: new ObjectId(req.params.id) })
