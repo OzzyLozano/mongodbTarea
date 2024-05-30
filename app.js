@@ -2,10 +2,12 @@ const express = require('express')
 const { connectToDb, getDb } = require('./db')
 const { ObjectId } = require('mongodb')
 const path = require('path')
+const cors = require('cors')
 
 // init app & middleware
 const app = express()
 app.use(express.json())
+app.use(cors())
 
 // Configurar los encabezados CORS
 app.use((req, res, next) => {
@@ -30,18 +32,17 @@ connectToDb((err) => {
 })
 
 // routes
-let books = []
 app.get('/books', (req, res) => {
   // current page
-  const page = req.query.page || 0
-  const booksPerPage = 3
+  // const page = req.query.page || 0
+  // const booksPerPage = 3
 
-  books = []
+  let books = []
   db.collection('books')
     .find()
     .sort({ rating: -1 })
-    .skip(page * booksPerPage) // for pagination
-    .limit(booksPerPage) // for pagination
+    // .skip(page * booksPerPage) // for pagination
+    // .limit(booksPerPage) // for pagination
     .forEach(book => books.push(book))
     .then(() => {
       res.status(200).json(books)
@@ -64,7 +65,7 @@ app.get('/books/:id', (req, res) => {
   }
 })
 
-app.post('/books', (req, res) => {
+app.post('/post-book', (req, res) => {
   const book = req.body
 
   db.collection('books')
